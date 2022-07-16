@@ -5,6 +5,7 @@
     padding: 30px;
     display: flex;
     border: 2px solid black;
+    flex-wrap: wrap;
 }
 
 .example-card {
@@ -17,20 +18,14 @@
     background-size: cover;
 }
 
-.image {
+.myImage {
     /* border: 2px solid black; */
-    height: 140px;
-    width: 120px;
-    margin: 10px;
-    background: #F5F5F5 0% 0% no-repeat padding-box;
-    border-radius: 2px 2px 0px 0px;
-    opacity: 1;
-
-}
-
-.header {
-    /* border: 2px solid black; */
-    height: 30px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9dede;
+    border-radius: 2px;
 }
 
 .actions {
@@ -43,25 +38,35 @@
 
 .title {
     text-align: left;
-    font: normal normal normal 14px/17px Lato;
+    font: normal normal normal 18px/20px Lato;
     letter-spacing: 0px;
     color: #0A0102;
     opacity: 1;
-}
-
-.sub-title {
-    text-align: left;
-    font: normal normal normal 10px/12px Lato;
-    letter-spacing: 0px;
-    color: #9D9D9D;
-    opacity: 1;
+    margin-bottom: 4px;
+    border: 1px solid rgb(191, 183, 183);
+    border-radius: 2px;
+    word-wrap: break-word;
+    background-color: whitesmoke;
 }
 
 .myCard {
     margin: 30px;
     width: 200px;
+    height: 350px;
     padding: 10px;
     display: flex;
     flex-direction: column;
+    border: 1px solid rgb(200, 195, 195);
+    border-radius: 2px;
+    
+}
 
+.bookimg {
+    height: 100%;
+    
+}
+
+.myCard img:hover {
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
 }
