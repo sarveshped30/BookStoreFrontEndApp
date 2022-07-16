@@ -1,0 +1,39 @@
+.container {
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 20%;
+    padding: 30px;
+    border: 2px solid rgb(188, 183, 183);
+    border-radius: 2px;
+}
+
+.form {
+    width: 100%;
+}
+
+.location {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 2px solid black; */
+}
+
+.items {
+    width: 140px;
+}
+
+.button {
+    background-color: gold;
+    width: 100%;
+}
+
+.register {
+    display: flex;
+    /* border: 2px solid black; */
+    align-items: center;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 10px;
+  }

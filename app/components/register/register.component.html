@@ -1,0 +1,101 @@
+<div class="container">
+    <h1>Create Account</h1>
+    <form [formGroup]="registerForm">
+        <div class="form register">
+            <mat-label>Register as:</mat-label>
+            <mat-radio-group color="primary" style="margin-left: 12px;" formControlName="register">
+                <mat-radio-button value="1">Buyer</mat-radio-button>
+                <mat-radio-button value="2">Seller</mat-radio-button>
+            </mat-radio-group>
+            <button mat-icon-button color="primary" style="margin-left: 12px;" (click)="insert()">
+                <mat-icon>check_circle_outline</mat-icon>
+            </button>
+        </div>
+    </form><br>
+    <mat-divider></mat-divider><br>
+
+    <div class="form" *ngIf="buyer">
+        <form action="">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Username</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Mobile number</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Email Id</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Address</mat-label>
+                <textarea name="" id="" cols="30" rows="4" matInput type="text"></textarea>
+            </mat-form-field>
+            <div class="location">
+                <div class="items">
+                    <mat-label>City</mat-label>
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <select placeholder="select city" matNativeControl required formControlName="city">
+                            <option value="default">select city</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Thane">Thane</option>
+                            <option value="Nashik">Nashik</option>
+                            <option value="Nagpur">Nagpur</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Bengaluru">Bengaluru</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+                <div class="items">
+                    <mat-label>State</mat-label>
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <select matNativeControl required formControlName="state" placeholder="select state">
+                            <option value="default">select state</option>
+                            <option value="Maharashtra">MH</option>
+                            <option value="Tamil nadu">TN</option>
+                            <option value="Karnataka">KN</option>
+                            <option value="Andra pradesh">AP</option>
+                            <option value="Madhya pradesh">MP</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>ZipCode</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="form" *ngIf="seller">
+        <form action="">
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Book Name</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Author Name</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Prize</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width: 100%;">
+                <mat-label>Quantity</mat-label>
+                <input type="text" matInput>
+            </mat-form-field>
+        </form>
+        <div>
+            <input type="file" (change)="onFileSelected($event)">
+        </div><br>
+    </div>
+    <h5>Verification mail will be sent to regsitered mail id</h5>
+    <button mat-raised-button class="button">Continue</button>
+</div>
