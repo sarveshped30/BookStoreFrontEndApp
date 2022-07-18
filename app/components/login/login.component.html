@@ -1,18 +1,18 @@
 <div class="container">
     <h1>Sign-in</h1>
     <div class="form"> 
-        <form action="">
+        <form [formGroup]="loginForm">
             <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-label>username</mat-label>
-                <input type="text" matInput>
+                <input type="text" matInput formControlName="userName">
                 <mat-icon matSuffix>user</mat-icon>
             </mat-form-field>
             <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-label>password</mat-label>
-                <input type="password" matInput>
+                <input type="password" matInput formControlName="password">
                 <mat-icon matSuffix>user</mat-icon>
             </mat-form-field>
-            <button mat-raised-button class="button">Continue</button>
+            <button mat-raised-button class="button" (click)="onLogin()" (click)="getUserId()">Continue</button>
         </form>
     </div>
 </div>

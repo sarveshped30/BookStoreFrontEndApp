@@ -3,6 +3,7 @@
     align-items: center;
     background: #A03037 0% 0% no-repeat padding-box;;
     height: 9vh;
+    min-width: 400px;
 }
 
 .left-el {
@@ -40,6 +41,7 @@
     padding-left: 10px;
     padding-top: 5px;
     border: 2px solid rgb(96, 94, 94);
+    min-width: 100px;
     
 }
 
