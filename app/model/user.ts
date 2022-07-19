@@ -9,5 +9,6 @@ export class User {
         public state : string,
         public zipCode : number,
         public address : string,
+        public books : [],
     ) {}
 }

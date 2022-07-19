@@ -14,6 +14,7 @@ export class bookStoreService {
   private sellerURL:string = "http://localhost:8080/seller";
   private loginURL:string = "http://localhost:8080/login";
   private cartURL:string = "http://localhost:8080/cart";
+  private orderURL:string = "http://localhost:8080/order"
 
   constructor(private http : HttpClient) { }
 
@@ -26,6 +27,12 @@ export class bookStoreService {
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
     return this.http.get(this.buyerURL + "/view",  {headers : header});
+  }
+
+  getUserById(): Observable<any> {
+    let tokenStr = 'Bearer ' + this.token;
+    const header = new HttpHeaders().set("Authorization", tokenStr);
+    return this.http.get(this.buyerURL + "/view/" + this.userId, {headers : header})
   }
 
   registerSeller(seller : any) : Observable<any> {
@@ -77,5 +84,11 @@ export class bookStoreService {
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
     return this.http.get(this.cartURL + "/add/" + bookId + "/" + this.userId, {headers : header});
+  }
+
+  placeOrder(bookId:number) : Observable<any> {
+    let tokenStr = 'Bearer ' + this.token;
+    const header = new HttpHeaders().set("Authorization", tokenStr);
+    return this.http.get(this.orderURL + "/" + bookId + "/" + this.userId, {headers : header});
   }
 }
