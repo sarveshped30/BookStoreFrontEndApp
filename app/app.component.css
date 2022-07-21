@@ -1,7 +1,7 @@
 .nav-bar {
     display: flex;
     align-items: center;
-    background: #A03037 0% 0% no-repeat padding-box;;
+    background: #A03037 0% 0% no-repeat padding-box;
     height: 9vh;
     min-width: 400px;
 }

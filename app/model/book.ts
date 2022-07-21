@@ -4,7 +4,7 @@ export class Book {
         public bookName : string,
         public author : string,
         public bookPrize : number,
-        public bookImage : File,
+        public bookImage : any,
         public quantity : number, 
     ) {}
 }

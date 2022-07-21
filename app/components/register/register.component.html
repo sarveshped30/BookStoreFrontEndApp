@@ -73,7 +73,7 @@
             </mat-form-field>
         </form><br>
         <h5>Verification mail will be sent to regsitered mail id</h5>
-        <button mat-raised-button class="button" (click)="onSubmitBuyer()" (click)="getUsers()">Continue</button>
+        <button mat-raised-button class="button" (click)="onSubmitBuyer()">Continue</button>
     </div>
     <div class="form" *ngIf="seller">
         <form [formGroup]="sellerForm">
@@ -98,6 +98,6 @@
             <input type="file" (change)="onFileSelected($event)">
         </div><br>
         <h5>Verification mail will be sent to regsitered mail id</h5>
-        <button mat-raised-button class="button" (click)="onSubmitSeller()" (click)="getBooks()">Continue</button>
+        <button mat-raised-button class="button" (click)="onSubmitSeller()">Continue</button>
     </div>
 </div>

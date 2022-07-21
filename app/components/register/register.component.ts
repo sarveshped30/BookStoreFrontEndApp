@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Book } from 'src/app/model/book';
 import { bookStoreService } from 'src/app/services/bookStore.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
   sellerForm !: FormGroup;
   buyer : boolean = true;
   seller : boolean = false;
-  selectedFile !: File;
+  selectedFile !: any;
+  book !: Book;
   
   constructor(
     private formBuilder: FormBuilder,
@@ -58,9 +60,18 @@ export class RegisterComponent implements OnInit {
   }
 
   onFileSelected(event : any) {
-    console.log(event.target.files[0]);
-    this.selectedFile = <File>event.target.files[0];
-    console.log(this.selectedFile);
+    // console.log(event.target.files[0]);
+    // this.selectedFile = <File>event.target.files[0];
+    // console.log(this.selectedFile);
+    // console.log(this.selectedFile.data);
+    if(event.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload=(event:any)=> {
+        console.log(event.target.result);
+        this.selectedFile = event.target.result;
+      }
+    }
   }
 
   onSubmitBuyer() {
@@ -73,10 +84,12 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmitSeller() {
-    // console.log(this.sellerForm.value);
-    this.service.registerSeller(this.sellerForm.value).subscribe(response => {
+    console.log(this.sellerForm.value);
+    this.book = this.sellerForm.value;
+    this.book.bookImage = this.selectedFile;
+    console.log(this.book);
+    this.service.registerSeller(this.book).subscribe(response => {
       console.log(response);
-      
     });
     alert(this.sellerForm.value.bookName + " added successfully");
   }

@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
     this.service.addToCart(bookId).subscribe(response => {
       console.log(bookId);
       console.log(response);
+      alert("Added to cart!!")
     });
   }
 

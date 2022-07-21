@@ -4,7 +4,7 @@
     width: 80%;
     padding: 30px;
     display: flex;
-    border: 2px solid black;
+    /* border: 2px solid rgb(196, 190, 190); */
     flex-wrap: wrap;
 }
 
@@ -13,11 +13,6 @@
     margin: 30px;
 }
   
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-}
-
 .myImage {
     /* border: 2px solid black; */
     height: 190px;

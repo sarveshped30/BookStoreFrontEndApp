@@ -42,13 +42,13 @@ export class bookStoreService {
   viewBooks() : Observable<any>{
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
-    return this.http.get(this.sellerURL + "/view", {headers : header});
+    return this.http.get(this.sellerURL + "/view");
   }
 
   getBookQuantity(bookName : string) : Observable<any> {
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
-    return this.http.get(this.sellerURL + "/getQuantity/" + bookName, {headers : header});
+    return this.http.get(this.sellerURL + "/getQuantity/" + bookName);
   }
 
   login(details : any){
@@ -65,13 +65,13 @@ export class bookStoreService {
   getUserId(username : string) : Observable<any> {
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
-    let response =  this.http.get(this.loginURL + "/get/" + username, {headers : header});
+    let response =  this.http.get(this.loginURL + "/get/" + username);
     response.subscribe(resp => {
       this.userId = resp;
       console.log("userId is " + this.userId);
       
     })
-    return this.http.get(this.loginURL + "/get/" + username, {headers : header});
+    return this.http.get(this.loginURL + "/get/" + username);
   }
 
   addToCart(bookId : number) : Observable<any> {
@@ -83,7 +83,7 @@ export class bookStoreService {
   removeFromCart(bookId : number) : Observable<any>{
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
-    return this.http.get(this.cartURL + "/add/" + bookId + "/" + this.userId, {headers : header});
+    return this.http.get(this.cartURL + "/remove/" + bookId + "/" + this.userId, {headers : header});
   }
 
   placeOrder(bookId:number) : Observable<any> {

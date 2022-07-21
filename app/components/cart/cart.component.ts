@@ -11,6 +11,7 @@ import { bookStoreService } from 'src/app/services/bookStore.service';
 export class CartComponent implements OnInit {
 
   cartBooks !: Book[];
+  incDecValue : number = 1;
 
   constructor(private service : bookStoreService,private router : Router) { }
 
@@ -26,5 +27,23 @@ export class CartComponent implements OnInit {
       console.log(response);
     });
     this.router.navigate(['order']);
+  }
+
+  removeFromCart(bookId : any) {
+    this.service.removeFromCart(bookId).subscribe(response => {
+      console.log(response);
+      this.ngOnInit();
+    });
+  }
+
+  increment() {
+    this.incDecValue = this.incDecValue + 1;
+  }
+
+  decrement() {
+    this.incDecValue = this.incDecValue - 1;
+    if(this.incDecValue == 0) {
+      this.incDecValue = 1;
+    }
   }
 }
