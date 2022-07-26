@@ -30,10 +30,11 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(bookId : any) {
-    this.service.removeFromCart(bookId).subscribe(response => {
-      console.log(response);
+    this.service.removeFromCart(bookId).subscribe(resp => {
+      console.log(resp);
+      this.service.getBookCount();
       this.ngOnInit();
-    });
+    })
   }
 
   increment() {

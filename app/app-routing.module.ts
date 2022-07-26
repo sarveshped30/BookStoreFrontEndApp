@@ -7,6 +7,13 @@ import { OrderComponent } from './components/order/order.component';
 import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
+
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+
   {
     path: 'login',
     component:LoginComponent,

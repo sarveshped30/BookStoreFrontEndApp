@@ -1,6 +1,6 @@
 <div class="container">
     <ng-container>
-        <div *ngFor="let book of books">
+        <div *ngFor="let book of books | filter:searchKey:'bookName'">
             <mat-card class="myCard">
                 <h3 class="title"><strong>{{book.bookName | uppercase}}</strong></h3>
                 <div class="myImage">

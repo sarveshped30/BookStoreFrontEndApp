@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       // console.log(response.data);
       
     })
+    this.getUserId();
     alert("login Successful...")
   }
 

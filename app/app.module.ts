@@ -20,6 +20,9 @@ import { CartComponent } from './components/cart/cart.component';
 import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderComponent } from './components/order/order.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { HeaderComponent } from './components/header/header.component';
+import { FilterPipe } from './shared/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { OrderComponent } from './components/order/order.component';
     RegisterComponent,
     HomeComponent,
     CartComponent,
-    OrderComponent
+    OrderComponent,
+    HeaderComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import { OrderComponent } from './components/order/order.component';
     ReactiveFormsModule,
     MatCardModule,
     HttpClientModule,
+    MatBadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

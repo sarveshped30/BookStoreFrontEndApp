@@ -1,8 +1,13 @@
 .container {
-    margin: 400px;
-    padding: 30px;
+    margin: 50px;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(213, 206, 206);
+    /* background-color: rgb(213, 206, 206); */
 }
+
+button:hover {
+    transition: 0.3ms ease-out;
+    transform: scale(1.1)
+}   

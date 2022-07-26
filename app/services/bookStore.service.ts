@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,8 @@ export class bookStoreService {
 
   token !: any;
   userId !: any;
+  public bookList = new BehaviorSubject<any>(0);
+  public search = new BehaviorSubject<string>("");
 
   private buyerURL:string = "http://localhost:8080/register";
   private sellerURL:string = "http://localhost:8080/seller";
@@ -29,6 +31,13 @@ export class bookStoreService {
     return this.http.get(this.buyerURL + "/view",  {headers : header});
   }
 
+  getUser() {
+    let tokenStr = 'Bearer ' + this.token;
+    const header = new HttpHeaders().set("Authorization", tokenStr);
+    var user = this.http.get(this.buyerURL + "/view/" + this.userId, {headers : header});
+    console.log(user);
+  }
+
   getUserById(): Observable<any> {
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
@@ -45,6 +54,14 @@ export class bookStoreService {
     return this.http.get(this.sellerURL + "/view");
   }
 
+  getBookCount(){
+    var bookCount =  this.http.get(this.buyerURL + "/BookCount/" + this.userId);
+    bookCount.subscribe(resp => {
+      console.log("Book count is " + resp);
+      this.bookList.next(resp);
+    })
+  }
+
   getBookQuantity(bookName : string) : Observable<any> {
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
@@ -57,9 +74,8 @@ export class bookStoreService {
       // console.log(resp);
       this.token = resp;
       console.log(this.token);
-      
     });
-    return this.http.post(this.loginURL + "/authenticate", details,{responseType: 'text' as 'json'});
+    return response;
   }
 
   getUserId(username : string) : Observable<any> {
@@ -69,12 +85,12 @@ export class bookStoreService {
     response.subscribe(resp => {
       this.userId = resp;
       console.log("userId is " + this.userId);
-      
+      this.getBookCount();
     })
-    return this.http.get(this.loginURL + "/get/" + username);
+    return response;
   }
 
-  addToCart(bookId : number) : Observable<any> {
+  addToCart(bookId : number) : Observable<any>{
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
     return this.http.get(this.cartURL + "/add/" + bookId + "/" + this.userId,  {headers : header});

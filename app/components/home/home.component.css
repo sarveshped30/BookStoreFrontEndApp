@@ -62,10 +62,15 @@
 }
 
 .myCard img:hover {
-    transition: 0.3s ease-in-out;
+    transition: 0.3ms ease-in-out;
     transform: scale(1.1);
 }
 
 .button-bgclr {
     background-color: rgb(74, 74, 212);
 }
+
+button:hover {
+    transition: 0.3ms ease-out;
+    transform: scaleY(1.1)
+}   

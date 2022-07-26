@@ -1,0 +1,21 @@
+<mat-toolbar class="nav-bar">
+    <div class="left-el flex">
+      <img class="logo" src="assets/images/education.svg" alt="Logo" routerLink="/home">
+      <span class="name">Book Store</span>
+    </div>
+    <div class="search-form">
+        <input type="text" [(ngModel)]="searchTerm" (keyup)="search($event)" class="search"  onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search..'" placeholder="Search.."/>
+        <button mat-flat-button class="button">
+          <mat-icon>search</mat-icon>
+        </button>
+    </div>
+    <span class="spacer"></span>
+    <div class="Rt-El">
+    <button mat-icon-button class="cart" title="Cart" routerLink="/cart">
+      <mat-icon matBadge={{badgeCount}}>shopping_cart</mat-icon>
+    </button>
+    <button mat-icon-button class="login" title="Login" routerLink="/login">
+      <mat-icon>login</mat-icon>
+    </button>
+    </div>
+  </mat-toolbar>

@@ -10,6 +10,7 @@ import { bookStoreService } from 'src/app/services/bookStore.service';
 export class HomeComponent implements OnInit {
 
   books !: Book[];
+  searchKey : string = "";
 
   constructor(
     private service : bookStoreService,
@@ -30,14 +31,17 @@ export class HomeComponent implements OnInit {
        });
        this.books = allBooks;
     });
+
+    this.service.search.subscribe(value => {
+      this.searchKey = value;
+    })
   }
 
   addToCart(bookId : any) {
-    this.service.addToCart(bookId).subscribe(response => {
-      console.log(bookId);
-      console.log(response);
-      alert("Added to cart!!")
-    });
+    this.service.addToCart(bookId).subscribe(resp => {
+      console.log(resp);
+      this.service.getBookCount();
+    })
   }
 
 }
