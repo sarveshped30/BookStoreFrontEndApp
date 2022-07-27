@@ -1,6 +1,5 @@
 .container {
     margin: 0 auto;
-    margin-top: 30px;
     width: 80%;
     padding: 30px;
     display: flex;
@@ -58,7 +57,6 @@
 
 .bookimg {
     height: 100%;
-    
 }
 
 .myCard img:hover {
@@ -74,3 +72,30 @@ button:hover {
     transition: 0.3ms ease-out;
     transform: scaleY(1.1)
 }   
+
+.top-container {
+    margin: 0 auto;
+    margin-top: 30px;
+    height: 30px;
+    width: 80%;
+    padding: 10px;
+    padding-left: 68px;
+    display: flex;
+    /* border: 2px solid rgb(196, 190, 190); */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bookItems {
+    text-align: left;
+    font: normal normal normal 25px/30px Lato;
+    letter-spacing: 0px;
+    color: #5e1f25;
+    opacity: 1;
+}
+
+.sort {
+    margin-right: 150px;
+    height: 100%;
+    color: #5e1f25;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { bookStoreService } from 'src/app/services/bookStore.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder : FormBuilder,
     private services : bookStoreService,
+    private route : Router,
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class LoginComponent implements OnInit {
       
     })
     this.getUserId();
-    alert("login Successful...")
+    this.route.navigate(['home']);
   }
 
   getUserId() {

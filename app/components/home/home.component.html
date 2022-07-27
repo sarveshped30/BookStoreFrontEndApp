@@ -1,5 +1,13 @@
+<div class="top-container">
+        <span class="bookItems"><strong>BOOK's({{bookLength}})</strong></span>
+        <select class="sort" (change)="sortBy()" [(ngModel)]="sort">
+            <option value="" disabled selected hidden>Sort by..</option>
+            <option value="Relevance">Sort by Relevance</option>
+            <option value="Increasing">Price:Low to High</option>
+            <option value="Decreasing">Price:High to Low</option>
+        </select>
+</div>
 <div class="container">
-    <ng-container>
         <div *ngFor="let book of books | filter:searchKey:'bookName'">
             <mat-card class="myCard">
                 <h3 class="title"><strong>{{book.bookName | uppercase}}</strong></h3>
@@ -15,6 +23,5 @@
                 <button mat-raised-button class="button-bgclr" (click)="addToCart(book.bookId)">Add to cart</button>
             </mat-card>
         </div>
-    </ng-container>
 </div>
 

@@ -107,4 +107,36 @@ export class bookStoreService {
     const header = new HttpHeaders().set("Authorization", tokenStr);
     return this.http.get(this.orderURL + "/" + bookId + "/" + this.userId, {headers : header});
   }
+
+  sortBookAscending() : Observable<any> {
+    return this.http.get(this.sellerURL + "/sort/asc");
+  }
+
+  sortBookDescending() : Observable<any> {
+    return this.http.get(this.sellerURL + "/sort/desc");
+  }
+
+  incrementBook(bookId : any) : Observable<any> {
+    let tokenStr = 'Bearer ' + this.token;
+    const header = new HttpHeaders().set("Authorization", tokenStr);
+    return this.http.get(this.cartURL + "/addQuantity/" + bookId + "/" + this.userId, {headers : header});
+  }
+
+  decrementBook(bookId : any) : Observable<any> {
+    let tokenStr = 'Bearer ' + this.token;
+    const header = new HttpHeaders().set("Authorization", tokenStr);
+    return this.http.get(this.cartURL + "/removeQuantity/" + bookId + "/" + this.userId, {headers : header});
+  }
+
+  initiateBookQuantity(bookId : any) : Observable<any> {
+    let tokenStr = 'Bearer ' + this.token;
+    const header = new HttpHeaders().set("Authorization", tokenStr);
+    return this.http.get(this.sellerURL + "/initiate/" + bookId, {headers : header});
+  }
+
+  initiateAllBooksQuantity() : Observable<any> {
+    let tokenStr = 'Bearer ' + this.token;
+    const header = new HttpHeaders().set("Authorization", tokenStr);
+    return this.http.get(this.sellerURL + "/initiateAll", {headers : header});
+  }
 }

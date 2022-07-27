@@ -34,17 +34,32 @@ export class CartComponent implements OnInit {
       console.log(resp);
       this.service.getBookCount();
       this.ngOnInit();
+      this.service.initiateBookQuantity(bookId).subscribe(resp => {
+        console.log(resp);
+      })
     })
   }
 
-  increment() {
-    this.incDecValue = this.incDecValue + 1;
+  increment(bookId : any) {
+    this.service.incrementBook(bookId).subscribe(resp => {
+      console.log(resp);
+      this.ngOnInit();
+    });
   }
 
-  decrement() {
-    this.incDecValue = this.incDecValue - 1;
-    if(this.incDecValue == 0) {
-      this.incDecValue = 1;
+  decrement(bookId : any) {
+   this.service.decrementBook(bookId).subscribe(resp => {
+    console.log(resp);
+    if(resp == 0) {
+      this.service.removeFromCart(bookId).subscribe(resp => {
+        console.log(resp);
+        this.ngOnInit();
+        this.service.initiateBookQuantity(bookId).subscribe(resp => {
+          console.log(resp);
+        })
+      })
     }
+    this.ngOnInit();
+   });
   }
 }
