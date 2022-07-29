@@ -23,6 +23,8 @@ import { OrderComponent } from './components/order/order.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { HeaderComponent } from './components/header/header.component';
 import { FilterPipe } from './shared/filter.pipe';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { FilterPipe } from './shared/filter.pipe';
     MatCardModule,
     HttpClientModule,
     MatBadgeModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

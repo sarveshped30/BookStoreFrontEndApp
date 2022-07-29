@@ -2,12 +2,66 @@
     margin: 50px;
     padding: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     /* background-color: rgb(213, 206, 206); */
+    /* border: 2px solid black; */
 }
 
 button:hover {
     transition: 0.3ms ease-out;
     transform: scale(1.1)
 }   
+
+img {
+    width: 200px;
+    height: 170px;
+}
+
+h2 {
+    text-align: left;
+    font: normal normal bold 30px/35px Lato;
+    letter-spacing: 0px;
+    color: #333232;
+    text-transform: capitalize;
+    opacity: 1;
+}
+
+.message {
+    text-align: center;
+    font: normal normal normal 18px/22px Lato;
+    letter-spacing: 0px;
+    color: #333232;
+    opacity: 1;
+}
+
+.table {
+    margin-top: 30px;
+    width: auto;
+}
+
+td {
+    width: 150px;
+    height: 100px;
+    padding: 20px;
+    text-align: center;
+}
+
+.content {
+    background: #FAFAFA 0% 0% no-repeat padding-box;
+    border: 1px solid #9a9797;
+    opacity: 1;
+}
+
+.header {
+    background: #cac6c6 0% 0% no-repeat padding-box;
+    border: 1px solid #DCDCDC;
+    opacity: 1;
+}
+
+button {
+    margin-top: 15px;
+    color: white;
+    background-color: rgb(64, 64, 238);
+}

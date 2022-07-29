@@ -11,6 +11,7 @@ export class bookStoreService {
   userId !: any;
   public bookList = new BehaviorSubject<any>(0);
   public search = new BehaviorSubject<string>("");
+  public orderId = new BehaviorSubject<any>(0);
 
   private buyerURL:string = "http://localhost:8080/register";
   private sellerURL:string = "http://localhost:8080/seller";
@@ -102,10 +103,10 @@ export class bookStoreService {
     return this.http.get(this.cartURL + "/remove/" + bookId + "/" + this.userId, {headers : header});
   }
 
-  placeOrder(bookId:number) : Observable<any> {
+  placeOrder(totalPrize : any, orderDTO : any) : Observable<any> {
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
-    return this.http.get(this.orderURL + "/" + bookId + "/" + this.userId, {headers : header});
+    return this.http.post(this.orderURL + "/" + this.userId + "/" + totalPrize, orderDTO,{headers : header});
   }
 
   sortBookAscending() : Observable<any> {
@@ -138,5 +139,17 @@ export class bookStoreService {
     let tokenStr = 'Bearer ' + this.token;
     const header = new HttpHeaders().set("Authorization", tokenStr);
     return this.http.get(this.sellerURL + "/initiateAll", {headers : header});
+  }
+
+  getTotalPrize() : Observable<any> {
+    let tokenStr = 'Bearer ' + this.token;
+    const header = new HttpHeaders().set("Authorization", tokenStr);
+    return this.http.get(this.cartURL + "/totalPrize/" + this.userId, {headers : header})
+  }
+
+  emptyCart() : Observable<any> {
+    let tokenStr = 'Bearer ' + this.token;
+    const header = new HttpHeaders().set("Authorization", tokenStr);
+    return this.http.get(this.cartURL + "/empty/" + this.userId, {headers : header})
   }
 }

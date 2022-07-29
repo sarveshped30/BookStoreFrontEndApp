@@ -1,30 +1,117 @@
-<div class="container">
-    <div class="header">
-        <h2 style="margin-left: 15px;">My Cart</h2>
-    </div>
-    <div class="cart" *ngFor="let book of cartBooks">
-        <div class="flex">
-            <img src={{book.bookImage}} alt="book image" class="img">
-            <div class="content">
-                <span class="new-title">{{book.bookName}}</span><br>
-                <span><strong>Author: </strong> {{book.author}}<br>
-                <strong>Rs </strong>{{book.bookPrize}}</span><br>
-                <span style="flex: 1 1 auto;"></span>
-                <div class="inc-dec">
-                    <button mat-icon-button class="dec" (click)="decrement(book.bookId)">
-                        <mat-icon>remove_circle_outline</mat-icon>
-                    </button>
-                    <span>{{book.quantity}}</span>
-                    <button mat-icon-button class="inc" (click)="increment(book.bookId)">
-                        <mat-icon>add_circle_outline</mat-icon>
-                    </button>
-                </div>
-            </div>
-            <span style="flex: 1 1 auto;"></span>
-            <div class="newbutton-flex">
-                <button mat-raised-button class="Order" (click)="placeOrder(book.bookId)" style="margin-right: 10px;">Order</button>
-                <button mat-raised-button class="Remove" (click)="removeFromCart(book.bookId)">Remove</button>
+
+    <div class="container">
+        <div class="header">
+            <h2 style="margin-left: 15px;">My Cart</h2>
+        </div>
+        <div *ngIf="cartBooks.length == 0">
+            <img src="assets/images/cart empty.png" alt="cart empty" class="empty">
+            <div class="shop-now-flex">
+                <button mat-raised-button class="shop-button" routerLink="/home">Shop Now</button>
             </div>
         </div>
-    </div>
-</div>
+            <ng-container *ngIf="cartBooks.length != 0">
+                <div class="cart" *ngFor="let book of cartBooks">
+                    <div class="flex">
+                        <img src={{book.bookImage}} alt="book image" class="img">
+                        <div class="content">
+                            <span class="new-title">{{book.bookName}}</span><br>
+                            <span><strong>Author: </strong> {{book.author}}<br>
+                            <strong>Rs </strong>{{book.bookPrize}}</span><br>
+                            <span style="flex: 1 1 auto;"></span>
+                            <div class="inc-dec">
+                                <button mat-icon-button class="dec" (click)="decrement(book.bookId)">
+                                    <mat-icon>remove_circle_outline</mat-icon>
+                                </button>
+                                <span>{{book.quantity}}</span>
+                                <button mat-icon-button class="inc" (click)="increment(book.bookId)">
+                                    <mat-icon>add_circle_outline</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <span style="flex: 1 1 auto;"></span>
+                        <div class="newbutton-flex">
+                            <button mat-raised-button class="Remove" (click)="removeFromCart(book.bookId)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-button" *ngIf="!customerDetails">
+                    <button mat-raised-button class="Order" style="margin-right: 20px;" (click)="onOrderButton()">Place Order</button>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="customerDetails">
+                <div class="customer-content">
+                    <div class="details-header">
+                        <span class="customer"><strong>Customer Details</strong></span>
+                        <button mat-icon-button (click)="onUpKey()">
+                            <mat-icon>eject</mat-icon>
+                        </button>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="form">
+                        <form [formGroup]="customerForm">
+                            <mat-form-field appearance="outline" style="width: 260px; margin-right: 60px;" >
+                                <mat-label>Name</mat-label>
+                                <input matInput placeholder="Enter name" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="width: 260px;">
+                                <mat-label>Mobile number</mat-label>
+                                <input type="text" matInput placeholder="Enter number" formControlName="mobileNo">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="width: 260px; margin-right: 60px;">
+                                <mat-label>Email</mat-label>
+                                <input type="text" matInput placeholder="Enter Mail-Id" formControlName="emailId">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="width: 260px;">
+                                <mat-label>zipCode</mat-label>
+                                <input type="text" matInput placeholder="Enter ZipCode" formControlName="zipCode">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="width: 100%;">
+                                <mat-label>Address</mat-label>
+                                <textarea name="" id="" cols="30" rows="4" matInput type="text"  placeholder="Enter Address" formControlName="address"></textarea>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="width: 260px; margin-right: 60px;">
+                                <mat-label>City</mat-label>
+                                <input type="text" matInput placeholder="Enter City" formControlName="city">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" style="width: 260px;">
+                                <mat-label>State</mat-label>
+                                <input type="text" matInput placeholder="Enter State" formControlName="state">
+                            </mat-form-field>
+                        </form>
+                    </div>
+                    <div class="continue-button" *ngIf="!orderSummary">
+                        <button mat-raised-button class="continue" style="margin-right: 20px;" (click)="onContinue()">Continue</button>
+                    </div>  
+                </div>
+            </ng-container>
+            <ng-container *ngIf="orderSummary">
+                <div class="summary-content">
+                    <div class="summary-header">
+                        <span class="summary"><strong>Order summary</strong></span>
+                        <button mat-icon-button (click)="onSummaryUpKey()">
+                            <mat-icon>eject</mat-icon>
+                        </button>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="summary-container">
+                        <div class="summary-books" *ngFor="let book of cartBooks">
+                            <div class="summary-flex">
+                                <img src={{book.bookImage}} alt="book image" class="sum-img">
+                                <div class="sum-book-det">
+                                    <span class="sum-title"><strong>{{book.bookName}}</strong></span><br>
+                                    <span><strong>Author: </strong> {{book.author}}<br>
+                                    <strong>Rs </strong>{{book.bookPrize}}<br>
+                                    <strong>Quantity: </strong>{{book.quantity}}</span><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <mat-divider></mat-divider>
+                    <div class="summary-bottom">
+                        <span><strong>Total Prize: </strong>{{totalPrize}}</span>
+                        <button mat-raised-button class="checkout" (click)="placeOrder()">Checkout</button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>

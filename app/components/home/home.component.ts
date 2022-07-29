@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Book } from 'src/app/model/book';
 import { bookStoreService } from 'src/app/services/bookStore.service';
 
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private service : bookStoreService,
+    private _snackBar : MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -75,8 +77,6 @@ export class HomeComponent implements OnInit {
       
     } if (this.sort == "Relevance") {
       this.service.viewBooks().subscribe(response => {
-        // this.books = response.data;
-        // console.log(this.books);
         let allBooks:Book[] = response.data;
         console.log(allBooks);
          allBooks.forEach(book => {

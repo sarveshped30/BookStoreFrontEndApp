@@ -1,7 +1,20 @@
 <div class="container">
-    <img src="assets/images/greeting1.png" alt="greeting">
-    <div class="flex">
-        <h1>Your Order is placed successfully!!</h1>
-        <button mat-raised-button color="primary" routerLink="/home">Continue shopping</button>
-    </div>
+    <img src="assets/images/greeting1.jpg" alt="greeting">
+    <h2>Order Placed Successfully</h2><br><br>
+    <span class="message">hurray!!! your order is confirmed</span>
+    <span class="message">the order id is #{{orderId}} save the order id for</span>
+    <span class="message">further communication..</span>
+    <table class="table">
+        <tr class="header">
+            <th>Email us</th>
+            <th>Contact us</th>
+            <th>Address</th>
+        </tr>
+        <tr class="content">
+            <td>pednekarsarvesh30@gmail.com</td>
+            <td>+918097290260</td>
+            <td>R7, Shri krushna krupa society, trolly lane road, ram nagar, bhandup(W), mumbai 400042</td>
+        </tr>
+    </table>
+    <button mat-raised-button routerLink="/home">Continue shopping</button>
 </div>
